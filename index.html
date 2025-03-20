@@ -22,6 +22,7 @@
       </virtual-scroller>
     </div>
     <script type="modules">
+      console.log('11')
       import {
         createApp,
         computed,
@@ -33,7 +34,8 @@
         onUnmounted,
       } from 'vue'
       import { VirtualScroller } from 'vue-virtual-scroller';
-      app.component(`VirtualScroller`, VirtualScroller)
+      
+      console.log('22')
 
       const app = createApp({
         setup() {
@@ -44,6 +46,11 @@
           return { list };
         },
       }).mount('#app');
+
+      app.component(`virtual-scroller`, VirtualScroller)
+
+      
+      console.log(app)
     </script>
   </body>
 </html>
