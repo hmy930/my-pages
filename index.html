@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="app">
-      <VirtualScroller
+      <virtual-scroller
         :list="list"
         :min-item-size="30"
         item-size="auto"
@@ -19,7 +19,7 @@
         <template #default="{ item }">
           {{ item.text }}
         </template>
-      </VirtualScroller>
+      </virtual-scroller>
     </div>
     <script type="modules">
       import {
