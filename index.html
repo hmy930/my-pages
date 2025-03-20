@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <script type="importmap">
+      {
+        imports: {
+          'vue': 'https://cdn.jsdelivr.net/npm/vue@3.5.13/+esm'
+          'vue-virtual-scroller': 'https://cdn.jsdelivr.net/npm/@hmy930/vue-virtual-scroller@2.0.4/+esm'
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <VirtualScroller
+        :list="list"
+        :min-item-size="30"
+        item-size="auto"
+      >
+        <template #default="{ item }">
+          {{ item.text }}
+        </template>
+      </VirtualScroller>
+    </div>
+    <script type="modules">
+      import {
+        createApp,
+        computed,
+        ref,
+        shallowRef,
+        reactive,
+        toRefs,
+        onMounted,
+        onUnmounted,
+      } from 'vue'
+      import { VirtualScroller } from 'vue-virtual-scroller';
+      app.component(`VirtualScroller`, VirtualScroller)
+
+      const app = createApp({
+        setup() {
+          const list = shallowRef([]);
+          list.value = Array.from({ length: 50000 }).fill(0).map((_, i) => ({
+            text: `${i} `.repeat(10)
+          }))
+          return { list };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
