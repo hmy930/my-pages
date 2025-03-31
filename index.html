@@ -1,29 +1,40 @@
 <html>
   <head>
-    <script type="importmap">
-      {
-        "imports": {
-          "vue": "https://cdn.jsdelivr.net/npm/vue@3.5.13/+esm",
-          "vue-virtual-scroller": "https://cdn.jsdelivr.net/npm/@hmy930/vue-virtual-scroller@2.0.4/+esm"
-        }
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@hmy930/vue-virtual-scroller@^2.1.2/dist/index.css"
+    />
+    <style>
+      .hmy930-virtual-scroller-item {
+        display: flex;
+        align-items: center;
       }
-    </script>
+    </style>
   </head>
   <body>
     <div id="app">
       <virtual-scroller
         :list="list"
-        :min-item-size="30"
+        :min-item-size="50"
         item-size="auto"
+        style="height: 98vh"
       >
-        <template #default="{ item }">
-          {{ item.text }}
-        </template>
+        <template #default="{ item }"> {{ item.text }} </template>
       </virtual-scroller>
     </div>
-    
+
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://cdn.bootcdn.net/ajax/libs/vue/3.5.13/vue.esm-browser.min.js",
+          "vue-virtual-scroller": "https://cdn.jsdelivr.net/npm/@hmy930/vue-virtual-scroller@^2.1.2/dist/index.es.js"
+        }
+      }
+    </script>
+
     <script type="module">
-      console.log('11')
+      console.log('11');
+
       import {
         createApp,
         computed,
@@ -33,25 +44,32 @@
         toRefs,
         onMounted,
         onUnmounted,
-      } from 'vue'
+      } from 'vue';
+
       import { VirtualScroller } from 'vue-virtual-scroller';
-      
-      console.log('22')
+
+      console.log(VirtualScroller);
+
+      console.log('22');
 
       const app = createApp({
         setup() {
           const list = shallowRef([]);
-          list.value = Array.from({ length: 50000 }).fill(0).map((_, i) => ({
-            text: `${i} `.repeat(10)
-          }))
+          list.value = Array.from({ length: 50000 })
+            .fill(0)
+            .map((_, i) => ({
+              text: `${i} `.repeat(10),
+            }));
+
           return { list };
         },
-      }).mount('#app');
+      });
 
-      app.component(`virtual-scroller`, VirtualScroller)
+      console.log(app);
 
-      
-      console.log(app)
+      app.component(`virtual-scroller`, VirtualScroller);
+
+      app.mount('#app');
     </script>
   </body>
 </html>
